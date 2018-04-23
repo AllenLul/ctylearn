@@ -1,8 +1,9 @@
 <template>
   <div id="index">
     <section class="wrap">
-      <pagehead-student v-show="is_student"></pagehead-student>
-      <pagehead-teacher v-show="is_teacher"></pagehead-teacher>
+      <pagehead-student v-if="is_student"></pagehead-student>
+      <pagehead-teacher v-if="is_teacher"></pagehead-teacher>
+      <pagehead-manager v-if="is_manager"></pagehead-manager>
       <router-view></router-view>
       <pageFoot></pageFoot>
       <toPageTop></toPageTop>
@@ -14,6 +15,7 @@
 <script>
   import pagehead_student from '@/components/student/pagehead_student.vue'
   import pagehead_teacher from '@/components/teacher/pagehead_teacher.vue'
+  import pagehead_manager from '@/components/manager/pagehead_manager.vue'
   import pageFoot from '@/components/pageFoot.vue'
   import toPageTop from '@/components/toPageTop.vue'
   export default {
@@ -21,6 +23,7 @@
     components:{
       'pagehead-student': pagehead_student,
       'pagehead-teacher': pagehead_teacher,
+      'pagehead-manager': pagehead_manager,
       pageFoot,
       toPageTop
     },
@@ -28,6 +31,7 @@
       return {
         is_student: false,
         is_teacher: false,
+        is_manager: false,
       }
     },
     created() {

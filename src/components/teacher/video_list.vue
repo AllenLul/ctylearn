@@ -31,6 +31,12 @@
           </el-select>
         </el-form-item>
       </el-form>
+      <el-upload
+        class="upload-demo"
+        action="https://jsonplaceholder.typicode.com/posts/"
+        :file-list="fileList">
+        <el-button size="small" type="primary">点击上传</el-button>
+      </el-upload>
       <span slot="footer" class="dialog-footer">
     <el-button @click="handleClose">取 消</el-button>
     <el-button type="primary" @click="confirm">确 定</el-button>
@@ -50,6 +56,7 @@
           video_detail: '',
           course: '',
           course_list: [],
+          fileList: [],
         },
       }
     },
@@ -99,6 +106,10 @@
       padding: 2px 5px ;
     }
   }
+  .el-form-item {
+    text-align: left;
+  }
+
   .image {
     width: 100%;
     height: 100%;
