@@ -11,6 +11,7 @@ import 'element-ui/lib/theme-default/index.css'
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
 
+// axios.defaults.withCredentials=true;
 Vue.prototype.axios = axios;
 
 // Headers("application/javascript; charset=utf-8");

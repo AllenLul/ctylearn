@@ -59,18 +59,25 @@
           data: send_data,
           headers: {
             'Content-Type': 'application/json',
+            // 'Access-Control-Allow-Origin': '*',
+            // 'Access-Control-Allow-Headers': "Content-Type,Access-Token",
+            // 'Access-Control-Allow-Methods': 'PUT,POST,GET,DELETE,OPTIONS'
           }
         }).then(res => {
           document.cookie = "Authorization=BearereyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYSIsImNyZWF0ZWQiOjE1MjU4NDY0MzU5MjUsImV4cCI6MTUyNjQ1MTIzNX0.H4SvUQ_3w_vQUQtzgUWIcF13s_6wYK19sPgqtQ-QFOQFt0XV2OW_Q4YbuVkmcG6AHBS2YShVXSS0lgk1XC_LJQ";
           let send_data1 = {
             number: this.account,
           };
+          this.axios.defaults.withCredentials=true;
           this.axios({
             method: 'post',
             url: 'http://localhost:8888/user/get-by-number',
             data: send_data1,
             headers: {
               'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Credentials': "true",
+
             }
           }).then(res => {
             // this.$router.push(`/shareIndex`);

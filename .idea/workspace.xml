@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ac1b85a-fbb5-48c2-862b-45c0a3d3247c" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/assets/js/jsonp.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
       <change beforePath="$PROJECT_DIR$/src/components/login.vue" afterPath="$PROJECT_DIR$/src/components/login.vue" />
-      <change beforePath="$PROJECT_DIR$/src/components/shareIndex.vue" afterPath="$PROJECT_DIR$/src/components/shareIndex.vue" />
-      <change beforePath="$PROJECT_DIR$/src/components/shared/course_detail.vue" afterPath="$PROJECT_DIR$/src/components/shared/course_detail.vue" />
-      <change beforePath="$PROJECT_DIR$/src/components/shared/personal_info.vue" afterPath="$PROJECT_DIR$/src/components/shared/personal_info.vue" />
-      <change beforePath="$PROJECT_DIR$/src/components/student/course.vue" afterPath="$PROJECT_DIR$/src/components/student/course.vue" />
-      <change beforePath="$PROJECT_DIR$/src/components/student/video_list.vue" afterPath="$PROJECT_DIR$/src/components/student/video_list.vue" />
-      <change beforePath="$PROJECT_DIR$/src/components/teacher/arrange_homework.vue" afterPath="$PROJECT_DIR$/src/components/teacher/arrange_homework.vue" />
-      <change beforePath="$PROJECT_DIR$/src/components/teacher/course.vue" afterPath="$PROJECT_DIR$/src/components/teacher/course.vue" />
-      <change beforePath="$PROJECT_DIR$/src/components/teacher/file_list.vue" afterPath="$PROJECT_DIR$/src/components/teacher/file_list.vue" />
-      <change beforePath="$PROJECT_DIR$/src/components/teacher/video_list.vue" afterPath="$PROJECT_DIR$/src/components/teacher/video_list.vue" />
       <change beforePath="$PROJECT_DIR$/src/main.js" afterPath="$PROJECT_DIR$/src/main.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -36,8 +24,8 @@
       <file leaf-file-name="login.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/login.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="66" column="12" lean-forward="true" selection-start-line="66" selection-start-column="12" selection-end-line="66" selection-end-column="12" />
+            <state relative-caret-position="423">
+              <caret line="76" column="49" lean-forward="true" selection-start-line="76" selection-start-column="49" selection-end-line="76" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -46,9 +34,11 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-              <folding />
+            <state relative-caret-position="240">
+              <caret line="13" column="39" lean-forward="true" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="39" />
+              <folding>
+                <element signature="e#140#161#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -67,7 +57,7 @@
         <entry file="file://$PROJECT_DIR$/src/components/teacher/arrange_homework.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2260">
-              <caret line="113" column="11" lean-forward="true" selection-start-line="100" selection-start-column="8" selection-end-line="113" selection-end-column="11" />
+              <caret line="113" column="11" lean-forward="false" selection-start-line="100" selection-start-column="8" selection-end-line="113" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -77,7 +67,7 @@
         <entry file="file://$PROJECT_DIR$/src/components/teacher/file_list.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2200">
-              <caret line="110" column="11" lean-forward="true" selection-start-line="97" selection-start-column="8" selection-end-line="110" selection-end-column="11" />
+              <caret line="110" column="11" lean-forward="false" selection-start-line="97" selection-start-column="8" selection-end-line="110" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -236,10 +226,10 @@
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="5" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="10" />
     <option name="y" value="23" />
-    <option name="width" value="1435" />
+    <option name="width" value="1430" />
     <option name="height" value="877" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -258,6 +248,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -302,7 +293,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -382,7 +372,8 @@
       <workItem from="1525777883153" duration="2349000" />
       <workItem from="1525789570936" duration="2880000" />
       <workItem from="1525827569977" duration="290000" />
-      <workItem from="1525841709132" duration="2324000" />
+      <workItem from="1525841709132" duration="2445000" />
+      <workItem from="1525870123747" duration="1882000" />
     </task>
     <task id="LOCAL-00001" summary="毕设">
       <created>1524488025543</created>
@@ -391,11 +382,18 @@
       <option name="project" value="LOCAL" />
       <updated>1524488025543</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="毕设">
+      <created>1525847035114</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1525847035114</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="83101000" />
+    <option name="totallyTimeSpent" value="85104000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -407,9 +405,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="5" y="23" width="1435" height="877" extended-state="0" />
+    <frame x="61" y="23" width="1379" height="877" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15841584" sideWeight="0.4923664" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16494845" sideWeight="0.4923664" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32992327" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -692,7 +690,7 @@
     <entry file="file://$PROJECT_DIR$/src/components/teacher/arrange_homework.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2260">
-          <caret line="113" column="11" lean-forward="true" selection-start-line="100" selection-start-column="8" selection-end-line="113" selection-end-column="11" />
+          <caret line="113" column="11" lean-forward="false" selection-start-line="100" selection-start-column="8" selection-end-line="113" selection-end-column="11" />
           <folding />
         </state>
       </provider>
@@ -732,23 +730,25 @@
     <entry file="file://$PROJECT_DIR$/src/components/teacher/file_list.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2200">
-          <caret line="110" column="11" lean-forward="true" selection-start-line="97" selection-start-column="8" selection-end-line="110" selection-end-column="11" />
+          <caret line="110" column="11" lean-forward="false" selection-start-line="97" selection-start-column="8" selection-end-line="110" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-          <folding />
+        <state relative-caret-position="240">
+          <caret line="13" column="39" lean-forward="true" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="39" />
+          <folding>
+            <element signature="e#140#161#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/login.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="66" column="12" lean-forward="true" selection-start-line="66" selection-start-column="12" selection-end-line="66" selection-end-column="12" />
+        <state relative-caret-position="423">
+          <caret line="76" column="49" lean-forward="true" selection-start-line="76" selection-start-column="49" selection-end-line="76" selection-end-column="49" />
           <folding />
         </state>
       </provider>
