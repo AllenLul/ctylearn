@@ -41,7 +41,7 @@
         </el-form>
         <span slot="footer" class="dialog-footer">
           <el-button @click="dialogVisible = false">取 消</el-button>
-          <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+          <el-button type="primary" @click="apply">确 定</el-button>
          </span>
       </el-dialog>
     </section>
@@ -63,6 +63,22 @@
         },
 			}
 		},
+    created() {
+      let send_data = {
+        "currentPage": 1,
+        "pageSize": 12,
+      };
+      this.axios({
+        method: 'post',
+        url: 'http://localhost:8888/course/find-limit-objects',
+        data: send_data,
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }).then(res => {
+
+      });
+    },
 		methods:{
       showDialog () {
         this.dialogVisible = true;
@@ -73,6 +89,21 @@
       goToDetail() {
         // alert(window.location.href);
         this.$router.push('/course-detail/123');
+      },
+      apply() {
+        let send_data = {
+
+        };
+        this.axios({
+          method: 'post',
+          url: 'http://localhost:8888/course/add',
+          data: send_data,
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        }).then(res => {
+
+        });
       },
 		}
 	}

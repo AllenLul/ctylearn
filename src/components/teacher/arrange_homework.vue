@@ -98,7 +98,20 @@
     },
     methods: {
       queryData() {
+        let send_data = {
+          "currentPage": 1,
+          "pageSize": 12,
+        };
+        this.axios({
+          method: 'post',
+          url: 'http://localhost:8888/homework/find-limit-objects',
+          data: send_data,
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        }).then(res => {
 
+        });
       },
       openDialog() {
         this.dialogVisible = true;
@@ -107,7 +120,19 @@
         this.dialogVisible = false;
       },
       confirm() {
-        this.dialogVisible = false;
+        let send_data = {
+
+        };
+        this.axios({
+          method: 'post',
+          url: 'http://localhost:8888/homework/add',
+          data: send_data,
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        }).then(res => {
+          this.dialogVisible = false;
+        });
       },
     }
   }

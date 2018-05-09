@@ -38,6 +38,21 @@
         course_detail: '身娇体柔易推倒',
       }
     },
+    created() {
+      let send_data = {
+        id: 12,
+      };
+      this.axios({
+        method: 'get',
+        url: 'http://localhost:8888/course/',
+        data: send_data,
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }).then(res => {
+
+      });
+    }
   }
 </script>
 

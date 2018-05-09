@@ -38,7 +38,22 @@
 
 			}
 		},
+    created() {
+      let send_data = {
+        "currentPage": 1,
+        "pageSize": 12,
+      };
+      this.axios({
+        method: 'post',
+        url: 'http://localhost:8888/course/find-limit-objects',
+        data: send_data,
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }).then(res => {
 
+      });
+    },
 		methods:{
 
 		}

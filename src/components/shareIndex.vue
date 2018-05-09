@@ -66,8 +66,34 @@ export default {
       dataList:[],
     }
   },
+  created() {
+    let send_data = {
+      "currentPage": 1,
+        "pageSize": 12,
+    };
+    this.axios({
+      method: 'post',
+      url: 'http://localhost:8888/course/find-limit-objects',
+      data: send_data,
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }).then(res => {
+
+    });
+    this.axios({
+      method: 'post',
+      url: 'http://localhost:8888/video/find-limit-objects',
+      data: send_data,
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }).then(res => {
+
+    });
+  },
   mounted() {
-    var mySwiper = new Swiper('.swiper-container', {
+    let mySwiper = new Swiper('.swiper-container', {
       autoplay: 2000,//可选选项，自动滑动
     })
   },

@@ -29,7 +29,22 @@
 
 <script>
   export default {
-    name: "personal_info"
+    name: "personal_info",
+    created() {
+      let send_data = {
+
+      };
+      this.axios({
+        method: 'post',
+        url: 'http://localhost:8888/',
+        data: send_data,
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }).then(res => {
+
+      });
+    },
   }
 </script>
 

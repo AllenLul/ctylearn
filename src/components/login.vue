@@ -30,10 +30,14 @@
     name: "login",
     data() {
       return {
-        account: '1', // 账号
-        password: '1', // 密码
+        account: 'aa', // 账号
+        password: 'test', // 密码
         check_box: true, // 记住密码
+        role: '',
       }
+    },
+    created() {
+
     },
     methods: {
       login() {
@@ -45,7 +49,34 @@
           this.$message.error('请输入密码');
           return;
         }
-        this.$router.replace(`/shareIndex`);
+        let send_data = {
+          "username": this.account,
+          "password": this.password,
+        };
+        this.axios({
+          method: 'post',
+          url: 'http://localhost:8888/user/login',
+          data: send_data,
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        }).then(res => {
+          document.cookie = "Authorization=BearereyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYSIsImNyZWF0ZWQiOjE1MjU4NDY0MzU5MjUsImV4cCI6MTUyNjQ1MTIzNX0.H4SvUQ_3w_vQUQtzgUWIcF13s_6wYK19sPgqtQ-QFOQFt0XV2OW_Q4YbuVkmcG6AHBS2YShVXSS0lgk1XC_LJQ";
+          let send_data1 = {
+            number: this.account,
+          };
+          this.axios({
+            method: 'post',
+            url: 'http://localhost:8888/user/get-by-number',
+            data: send_data1,
+            headers: {
+              'Content-Type': 'application/json',
+            }
+          }).then(res => {
+            // this.$router.push(`/shareIndex`);
+
+          });
+        });
       },
     },
   }
