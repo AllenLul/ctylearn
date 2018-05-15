@@ -1,9 +1,9 @@
 <template>
   <div id="index">
     <section class="wrap">
-      <pagehead-student v-if="is_student"></pagehead-student>
-      <pagehead-teacher v-if="is_teacher"></pagehead-teacher>
-      <pagehead-manager v-if="is_manager"></pagehead-manager>
+      <!--<pagehead-student v-if="is_student == role"></pagehead-student>-->
+      <pagehead-teacher v-if="'manager' == role"></pagehead-teacher>
+      <!--<pagehead-manager v-if="is_manager == role"></pagehead-manager>-->
       <router-view></router-view>
       <pageFoot></pageFoot>
       <toPageTop></toPageTop>
@@ -29,9 +29,10 @@
     },
     data() {
       return {
-        is_student: false,
-        is_teacher: false,
-        is_manager: false,
+        is_student: 'student',
+        is_teacher: 'teacher',
+        is_manager: 'manager',
+        role: localStorage.getItem('role'),
       }
     },
     created() {

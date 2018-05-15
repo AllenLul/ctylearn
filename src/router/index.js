@@ -18,6 +18,10 @@ import teacher_arrange_homework from '@/components/teacher/arrange_homework.vue'
 import course_detail from '@/components/shared/course_detail.vue'
 import homework_detail from '@/components/shared/homework_detail.vue'
 import personal_info from '@/components/shared/personal_info.vue'
+import video_player from '@/components/shared/video_player.vue'
+import article_list from '@/components/Content/ArticleList.vue';
+import luntan from '@/components/shared/luntan/luntan.vue';
+import article_detail from '@/components/Content/Article1.vue';
 
 Vue.use(Router);
 
@@ -124,5 +128,25 @@ export default new Router({
       name: 'personal_info',
       component: personal_info
     }, // 个人信息
+    {
+      path: '/video-player',
+      name: 'video_player',
+      component: video_player
+    }, // 视频播放
+    {
+      path: '/luntan',
+      name: 'luntan',
+      component: luntan
+    },
+    {
+      path: '/article-list',
+      name: 'article_list',
+      component: article_list
+    },
+    {
+      path: '/article-detail/:id',
+      name: 'article_detail',
+      component: article_detail
+    },
   ]
 })

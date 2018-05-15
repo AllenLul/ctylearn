@@ -1,6 +1,6 @@
 <template>
   <el-card :body-style="{ padding: '0px' }">
-    <div class="header">
+    <div class="header1">
       <img src="../../assets/images/lessons/123.jpg" class="image">
       <div class="course-detail">
         <h2 v-text="course_name"></h2>
@@ -60,7 +60,7 @@
   .el-card {
     margin-top: 60px;
   }
-  .header {
+  .header1 {
     display: flex;
     width: 100%;
     height: 100%;

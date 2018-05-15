@@ -17,11 +17,11 @@
       <div id="showShare">
         <h1>精选课程</h1>
         <el-row>
-          <el-col :span="8" v-for="(o, index) in 12" :key="o" :offset="index > 0 ? 2 : 0">
+          <el-col :span="8" v-for="(item, index) in course_list" :key="item.id">
             <el-card :body-style="{ padding: '0px' }">
-              <img src="../assets/images/lessons/123.jpg" class="image">
+              <img :src="item.indexpic" class="image">
               <div>
-                <span>课程</span>
+                <span v-text="item.name"></span>
                 <div class="bottom clearfix">
                   <el-button type="text" class="button">进入</el-button>
                 </div>
@@ -32,13 +32,13 @@
       </div>
       <h1>精选视频</h1>
       <el-row>
-        <el-col :span="8" v-for="(o, index) in 12" :key="o" :offset="index > 0 ? 2 : 0">
+        <el-col :span="8" v-for="(item, index) in video_list" :key="item.id">
           <el-card :body-style="{ padding: '0px' }">
-            <img src="../assets/images/lessons/123.jpg" class="image">
+            <img :src="item.indexpic" class="image">
             <div>
-              <span>视频</span>
+              <span v-text="item.name">视频</span>
               <div class="bottom clearfix">
-                <el-button type="text" class="button">进入</el-button>
+                <el-button type="text" class="button" @click="goToVideo">进入</el-button>
               </div>
             </div>
           </el-card>
@@ -63,33 +63,50 @@ export default {
   data () {
     return {
       pageSize:12,
-      dataList:[],
+      course_list: [],
+      video_list: [],
     }
   },
   created() {
     let send_data = {
       "currentPage": 1,
-        "pageSize": 12,
+      "pageSize": 12,
     };
-    this.axios({
-      method: 'post',
-      url: 'http://localhost:8888/course/find-limit-objects',
-      data: send_data,
+    this.jquery.ajax({
+      url: `http://localhost:8888/course/findLimitObjects`,
+      beforeSend: function (request) {
+        request.setRequestHeader("controller-token", document.cookie);
+      },
       headers: {
         'Content-Type': 'application/json',
-      }
-    }).then(res => {
-
+      },
+      type: 'post',
+      data: JSON.stringify(send_data),
+      success: (data) => {
+        console.log(data.data);
+        this.course_list = data.data.items;
+      },
+      error: function (error) {
+        console.log(err);
+      },
     });
-    this.axios({
-      method: 'post',
-      url: 'http://localhost:8888/video/find-limit-objects',
-      data: send_data,
+    this.jquery.ajax({
+      url: `http://localhost:8888/video/findLimitObjects`,
+      beforeSend: function (request) {
+        request.setRequestHeader("controller-token", document.cookie);
+      },
       headers: {
         'Content-Type': 'application/json',
-      }
-    }).then(res => {
-
+      },
+      type: 'post',
+      data: JSON.stringify(send_data),
+      success: (data) => {
+        console.log(data.data);
+        this.course_list = data.data.items;
+      },
+      error: function (error) {
+        console.log(err);
+      },
     });
   },
   mounted() {
@@ -98,7 +115,9 @@ export default {
     })
   },
   methods: {
-
+    goToVideo() {
+      this.$router.push('/video-player');
+    },
   },
 }
 </script>

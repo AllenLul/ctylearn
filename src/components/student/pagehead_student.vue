@@ -32,15 +32,43 @@
               <el-menu-item index="4-2">已完成作业</el-menu-item>
             </router-link>
           </el-submenu>
-				  <router-link :to="'student-personal-info'">
-            <el-menu-item index="5">个人信息</el-menu-item>
-          </router-link>
 				  <router-link :to="'dh'">
             <el-menu-item index="5">论坛</el-menu-item>
           </router-link>
+          <el-button type="text" v-text="user.name" @click="openUserInfo"></el-button>
           <el-button style="margin-top: 12px;" @click="showExit">退出</el-button>
 				</el-menu>
 			</div>
+      <el-dialog size="large" title="个人信息" :visible.sync="dialog_visible" :before-close="handleClose">
+        <el-form label-width="100px" class="demo-ruleForm">
+          <el-form-item label="账号">
+            <el-input type="text" v-model="account" auto-complete="off" disabled></el-input>
+          </el-form-item>
+          <el-form-item label="姓名">
+            <el-input type="text" v-model="name" auto-complete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="手机号">
+            <el-input type="text" v-model="mobile" auto-complete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="学院">
+            <el-input type="text" v-model="department" auto-complete="off" disabled></el-input>
+          </el-form-item>
+          <el-form-item label="旧密码">
+            <el-input type="password" v-model="old_password" auto-complete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="新密码">
+            <el-input type="password" v-model="new_password" auto-complete="off"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="">提交</el-button>
+            <el-button @click="">重置</el-button>
+          </el-form-item>
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="dialog_visible = false">取 消</el-button>
+          <el-button type="primary" @click="dialog_visible = false">确 定</el-button>
+        </span>
+      </el-dialog>
 		</div>
 	</div>
 </template>
@@ -49,9 +77,36 @@
 		name: 'pagehead_student',
 		data(){
 			return {
-
+        user: {
+          name: name && 'test',
+        },
+        account: '',
+        name: '',
+        mobile: '',
+        department: '',
+        old_password: '',
+        new_password: '',
+        dialog_visible: false,
 			}
 		},
+    created() {
+      this.jquery.ajax({
+        url:`http://localhost:8888/user/getByNumber/${localStorage.getItem('account')}`,
+        beforeSend: function(request) {
+          request.setRequestHeader("controller-token", document.cookie);
+        },
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        type:'get',
+        success: (data) => {
+          this.user.name = data.data.name;
+        },
+        error: function (error) {
+          console.log(err);
+        },
+      });
+    },
 		methods: {
       showExit() {
         this.$confirm('即将退出, 是否继续?', '退出', {
@@ -60,6 +115,12 @@
         }).then(() => {
           this.$router.replace(`/login`);
         });
+      },
+      handleClose() {
+        this.dialog_visible = false;
+      },
+      openUserInfo() {
+        this.dialog_visible = true;
       },
     }
 	}
