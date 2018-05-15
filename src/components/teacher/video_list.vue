@@ -31,16 +31,16 @@
           </el-select>
         </el-form-item>
       </el-form>
-      <el-upload
-        class="upload-demo"
-        action="https://jsonplaceholder.typicode.com/posts/"
-        :file-list="fileList">
-        <el-button size="small" type="primary">点击上传</el-button>
-      </el-upload>
+      <el-form-item label="上传附件">
+        <el-upload :file-list="video_list" class="upload-demo" drag action="https://jsonplaceholder.typicode.com/posts/" multiple>
+          <i class="el-icon-upload"></i>
+          <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+        </el-upload>
+      </el-form-item>
       <span slot="footer" class="dialog-footer">
-    <el-button @click="handleClose">取 消</el-button>
-    <el-button type="primary" @click="confirm">确 定</el-button>
-  </span>
+        <el-button @click="handleClose">取 消</el-button>
+        <el-button type="primary" @click="confirm">确 定</el-button>
+      </span>
     </el-dialog>
   </article>
 </template>
@@ -56,7 +56,7 @@
           video_detail: '',
           course: '',
           course_list: [],
-          fileList: [],
+          video_list: [],
         },
       }
     },

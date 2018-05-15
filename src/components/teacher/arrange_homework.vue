@@ -36,6 +36,12 @@
             <el-option v-for="item of form.academic_list" :label="item.name" :value="item.id" :key="item.id"></el-option>
           </el-select>
         </el-form-item>
+        <el-form-item label="上传附件">
+          <el-upload  :file-list="homework_list"class="upload-demo" drag action="https://jsonplaceholder.typicode.com/posts/" multiple>
+            <i class="el-icon-upload"></i>
+            <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+          </el-upload>
+        </el-form-item>
       </el-form>
       <el-upload
         class="upload-demo"
@@ -92,7 +98,7 @@
           academic: '',
           academic_list: [],
         },
-        file_list: [], // 上传文件列表
+        homework_list: [], // 上传文件列表
         table_data: [],
       }
     },

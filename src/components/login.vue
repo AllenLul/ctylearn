@@ -41,6 +41,7 @@
     },
     methods: {
       login() {
+        this.$router.push(`/shareIndex`);
         if (!this.account) {
           this.$message.error('请输入账号');
           return;

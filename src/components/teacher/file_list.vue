@@ -36,13 +36,13 @@
             <el-option v-for="item of form.academic_list" :label="item.name" :value="item.id" :key="item.id"></el-option>
           </el-select>
         </el-form-item>
+        <el-form-item label="上传附件">
+          <el-upload class="upload-demo" :file-list="file_list" drag action="https://jsonplaceholder.typicode.com/posts/" multiple>
+            <i class="el-icon-upload"></i>
+            <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+          </el-upload>
+        </el-form-item>
       </el-form>
-      <el-upload
-        class="upload-demo"
-        action="https://jsonplaceholder.typicode.com/posts/"
-        :file-list="file_list">
-        <el-button size="small" type="primary">点击上传</el-button>
-      </el-upload>
       <span slot="footer" class="dialog-footer">
           <el-button @click="handleClose">取 消</el-button>
           <el-button type="primary" @click="confirm">确 定</el-button>
