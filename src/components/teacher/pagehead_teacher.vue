@@ -75,7 +75,7 @@
     data(){
       return {
         user: {
-          name: name && 'test',
+          name: 'test',
         },
         account: '',
         name: '',
