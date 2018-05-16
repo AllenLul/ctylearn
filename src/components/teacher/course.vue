@@ -7,11 +7,11 @@
           <el-button @click="showDialog">申请课程</el-button>
         </h1>
         <el-row>
-          <el-col :span="8" v-for="(item, index) in 12" :key="item" :offset="index > 0 ? 2 : 0">
+          <el-col :span="8" v-for="(item, index) in course_list" :key="item.id">
             <el-card :body-style="{ padding: '0px' }">
-              <img src="../../assets/images/lessons/123.jpg" class="image">
+              <img :src="item.indexpic" class="image">
               <div>
-                <span>课程名</span>
+                <span v-text="item.name"></span>
                 <div class="bottom clearfix">
                   <el-button type="text" class="button" @click="goToDetail">查看详情</el-button>
                 </div>
@@ -20,7 +20,7 @@
           </el-col>
         </el-row>
       </div>
-      <el-dialog title="申请课程" :visible.sync="dialogVisible" size="tiny" :before-close="handleClose">
+      <el-dialog title="申请课程" :visible.sync="dialogVisible" size="large" :before-close="handleClose">
         <el-form :model="form">
           <el-form-item label="课程名称">
             <el-input v-model="form.course_name" placeholder="请输入课程名称"></el-input>
@@ -38,6 +38,13 @@
               <el-option v-for="item of form.academic_list" :label="item.name" :value="item.id" :key="item.id"></el-option>
             </el-select>
           </el-form-item>
+          <el-form-item label="上传图片">
+            <el-upload class="upload-demo" drag action="https://jsonplaceholder.typicode.com/posts/">
+              <i class="el-icon-upload"></i>
+              <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+              <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+            </el-upload>
+          </el-form-item>
         </el-form>
         <span slot="footer" class="dialog-footer">
           <el-button @click="dialogVisible = false">取 消</el-button>
@@ -53,6 +60,9 @@
 		data(){
 			return {
         dialogVisible: false,
+        pageNum: 1,
+        pageSize: 12,
+        course_list: [],
         form: {
           course_name: '',
           course_detail: '',
@@ -64,22 +74,28 @@
 			}
 		},
     created() {
-      let send_data = {
-        "currentPage": 1,
-        "pageSize": 12,
-      };
-      this.axios({
-        method: 'post',
-        url: 'http://localhost:8888/course/find-limit-objects',
-        data: send_data,
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      }).then(res => {
-
-      });
+      this.getCourse(1);
     },
 		methods:{
+		  getCourse(pageNum) {
+        this.jquery.ajax({
+          url: `http://localhost:8888/course/findLimitObjects/${pageNum}/${this.pageSize}`,
+          beforeSend: function (request) {
+            request.setRequestHeader("controller-token", document.cookie);
+          },
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          type: 'get',
+          success: (data) => {
+            console.log(data.data);
+            this.course_list = data.data;
+          },
+          error: function (error) {
+            console.log(err);
+          },
+        });
+      },
       showDialog () {
         this.dialogVisible = true;
       },
@@ -92,17 +108,26 @@
       },
       apply() {
         let send_data = {
-
+          name: this.form.course_name,
+          tId: localStorage.getItem('account'),
+          handleType: 0,
         };
-        this.axios({
-          method: 'post',
-          url: 'http://localhost:8888/course/add',
-          data: send_data,
+        this.jquery.ajax({
+          url: `http://localhost:8888/course/add`,
+          beforeSend: function (request) {
+            request.setRequestHeader("controller-token", document.cookie);
+          },
           headers: {
             'Content-Type': 'application/json',
-          }
-        }).then(res => {
+          },
+          data: JSON.stringify(send_data),
+          type: 'post',
+          success: (data) => {
 
+          },
+          error: function (error) {
+            console.log(err);
+          },
         });
       },
 		}

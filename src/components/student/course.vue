@@ -4,13 +4,13 @@
       <div id="showShare">
         <h1>我的课程</h1>
         <el-row>
-          <el-col :span="8" v-for="(o, index) in 12" :key="o" :offset="index > 0 ? 2 : 0">
+          <el-col :span="8" v-for="(item, index) in course_list" :key="item.id">
             <el-card :body-style="{ padding: '0px' }">
-              <img src="../../assets/images/lessons/123.jpg" class="image">
+              <img :src="item.indexpic" class="image">
               <div>
-                <span>课程</span>
+                <span v-text="item.name"></span>
                 <div class="bottom clearfix">
-                  <el-button type="text" class="button">进入</el-button>
+                  <el-button type="text" class="button" @click="goToDetail">查看详情</el-button>
                 </div>
               </div>
             </el-card>
@@ -35,27 +35,38 @@
 		name:'anli',
 		data(){
 			return {
-
+        pageNum: 1,
+        pageSize: 12,
+        course_list: [],
 			}
 		},
     created() {
-      let send_data = {
-        "currentPage": 1,
-        "pageSize": 12,
-      };
-      this.axios({
-        method: 'post',
-        url: 'http://localhost:8888/course/find-limit-objects',
-        data: send_data,
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      }).then(res => {
-
-      });
+      this.getCourse(1);
     },
 		methods:{
-
+      getCourse(pageNum) {
+        this.jquery.ajax({
+          url: `http://localhost:8888/course/findLimitObjects/${pageNum}/${this.pageSize}`,
+          beforeSend: function (request) {
+            request.setRequestHeader("controller-token", document.cookie);
+          },
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          type: 'get',
+          success: (data) => {
+            console.log(data.data);
+            this.course_list = data.data;
+          },
+          error: function (error) {
+            console.log(err);
+          },
+        });
+      },
+      goToDetail() {
+        // alert(window.location.href);
+        this.$router.push('/course-detail/123');
+      },
 		}
 	}
 </script>
