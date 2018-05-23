@@ -1,15 +1,15 @@
 <template>
 	<div id="shareIndex">
-    <div class="swiper-container">
+    <div class="swiper-container banner">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
-          <img src="//edu-image.nosdn.127.net/61d51588-77c6-4d3c-afe4-3b49a8a1cdd2.png?imageView&thumbnail=960y440&quality=100" alt="">
+          <img src="../assets/images/banner/1.jpg" alt="">
         </div>
         <div class="swiper-slide">
-          <img src="//edu-image.nosdn.127.net/61d51588-77c6-4d3c-afe4-3b49a8a1cdd2.png?imageView&thumbnail=960y440&quality=100" alt="">
+          <img src="../assets/images/banner/2.jpg" alt="">
         </div>
         <div class="swiper-slide">
-          <img src="//edu-image.nosdn.127.net/61d51588-77c6-4d3c-afe4-3b49a8a1cdd2.png?imageView&thumbnail=960y440&quality=100" alt="">
+          <img src="../assets/images/banner/3.png" alt="">
         </div>
       </div>
     </div>
@@ -19,15 +19,147 @@
         <el-row>
           <el-col :span="8" v-for="(item, index) in course_list" :key="item.id">
             <el-card :body-style="{ padding: '0px' }">
-              <img :src="item.indexpic" class="image">
+              <img :src="item.indexPic" class="image">
               <div>
                 <span v-text="item.name"></span>
                 <div class="bottom clearfix">
-                  <el-button type="text" class="button">进入</el-button>
+                  <el-button type="text" class="button" @click="goToCourse(item.id)">进入</el-button>
                 </div>
               </div>
             </el-card>
           </el-col>
+          <!--<el-col :span="8">-->
+            <!--&lt;!&ndash;<el-col :span="8" v-for="(item, index) in course_list" :key="item.id">&ndash;&gt;-->
+            <!--<el-card :body-style="{ padding: '0px' }">-->
+              <!--<img src="../assets/images/lessons/2.jpg" class="image">-->
+              <!--<div>-->
+                <!--<span>分布式规划系统</span>-->
+                <!--<div class="bottom clearfix">-->
+                  <!--<el-button type="text" class="button">进入</el-button>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</el-card>-->
+          <!--</el-col>-->
+          <!--<el-col :span="8">-->
+            <!--&lt;!&ndash;<el-col :span="8" v-for="(item, index) in course_list" :key="item.id">&ndash;&gt;-->
+            <!--<el-card :body-style="{ padding: '0px' }">-->
+              <!--<img src="../assets/images/lessons/3.jpg" class="image">-->
+              <!--<div>-->
+                <!--<span>IT工程师职业规划浅谈</span>-->
+                <!--<div class="bottom clearfix">-->
+                  <!--<el-button type="text" class="button">进入</el-button>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</el-card>-->
+          <!--</el-col>-->
+          <!--<el-col :span="8">-->
+            <!--&lt;!&ndash;<el-col :span="8" v-for="(item, index) in course_list" :key="item.id">&ndash;&gt;-->
+            <!--<el-card :body-style="{ padding: '0px' }">-->
+              <!--<img src="../assets/images/lessons/4.png" class="image">-->
+              <!--<div>-->
+                <!--<span>结构化思考</span>-->
+                <!--<div class="bottom clearfix">-->
+                  <!--<el-button type="text" class="button">进入</el-button>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</el-card>-->
+          <!--</el-col>-->
+          <!--<el-col :span="8">-->
+            <!--&lt;!&ndash;<el-col :span="8" v-for="(item, index) in course_list" :key="item.id">&ndash;&gt;-->
+            <!--<el-card :body-style="{ padding: '0px' }">-->
+              <!--<img src="../assets/images/lessons/5.jpg" class="image">-->
+              <!--<div>-->
+                <!--<span>计算机网络应用</span>-->
+                <!--<div class="bottom clearfix">-->
+                  <!--<el-button type="text" class="button">进入</el-button>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</el-card>-->
+          <!--</el-col>-->
+          <!--<el-col :span="8">-->
+            <!--&lt;!&ndash;<el-col :span="8" v-for="(item, index) in course_list" :key="item.id">&ndash;&gt;-->
+            <!--<el-card :body-style="{ padding: '0px' }">-->
+              <!--<img src="../assets/images/lessons/6.jpg" class="image">-->
+              <!--<div>-->
+                <!--<span>计算机入侵与防范</span>-->
+                <!--<div class="bottom clearfix">-->
+                  <!--<el-button type="text" class="button">进入</el-button>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</el-card>-->
+          <!--</el-col>-->
+          <!--<el-col :span="8">-->
+            <!--&lt;!&ndash;<el-col :span="8" v-for="(item, index) in course_list" :key="item.id">&ndash;&gt;-->
+            <!--<el-card :body-style="{ padding: '0px' }">-->
+              <!--<img src="../assets/images/lessons/7.jpg" class="image">-->
+              <!--<div>-->
+                <!--<span>anyvip</span>-->
+                <!--<div class="bottom clearfix">-->
+                  <!--<el-button type="text" class="button">进入</el-button>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</el-card>-->
+          <!--</el-col>-->
+          <!--<el-col :span="8">-->
+            <!--&lt;!&ndash;<el-col :span="8" v-for="(item, index) in course_list" :key="item.id">&ndash;&gt;-->
+            <!--<el-card :body-style="{ padding: '0px' }">-->
+              <!--<img src="../assets/images/lessons/8.jpg" class="image">-->
+              <!--<div>-->
+                <!--<span>计算机网络安全</span>-->
+                <!--<div class="bottom clearfix">-->
+                  <!--<el-button type="text" class="button">进入</el-button>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</el-card>-->
+          <!--</el-col>-->
+          <!--<el-col :span="8">-->
+            <!--&lt;!&ndash;<el-col :span="8" v-for="(item, index) in course_list" :key="item.id">&ndash;&gt;-->
+            <!--<el-card :body-style="{ padding: '0px' }">-->
+              <!--<img src="../assets/images/lessons/9.jpg" class="image">-->
+              <!--<div>-->
+                <!--<span>摄影全能班</span>-->
+                <!--<div class="bottom clearfix">-->
+                  <!--<el-button type="text" class="button">进入</el-button>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</el-card>-->
+          <!--</el-col>-->
+          <!--<el-col :span="8">-->
+            <!--&lt;!&ndash;<el-col :span="8" v-for="(item, index) in course_list" :key="item.id">&ndash;&gt;-->
+            <!--<el-card :body-style="{ padding: '0px' }">-->
+              <!--<img src="../assets/images/lessons/10.jpg" class="image">-->
+              <!--<div>-->
+                <!--<span>IOS培训课程</span>-->
+                <!--<div class="bottom clearfix">-->
+                  <!--<el-button type="text" class="button">进入</el-button>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</el-card>-->
+          <!--</el-col>-->
+          <!--<el-col :span="8">-->
+            <!--&lt;!&ndash;<el-col :span="8" v-for="(item, index) in course_list" :key="item.id">&ndash;&gt;-->
+            <!--<el-card :body-style="{ padding: '0px' }">-->
+              <!--<img src="../assets/images/lessons/11.jpg" class="image">-->
+              <!--<div>-->
+                <!--<span>Akka介绍与架构解析</span>-->
+                <!--<div class="bottom clearfix">-->
+                  <!--<el-button type="text" class="button">进入</el-button>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</el-card>-->
+          <!--</el-col>-->
+          <!--<el-col :span="8">-->
+            <!--&lt;!&ndash;<el-col :span="8" v-for="(item, index) in course_list" :key="item.id">&ndash;&gt;-->
+            <!--<el-card :body-style="{ padding: '0px' }">-->
+              <!--<img src="../assets/images/lessons/12.png" class="image">-->
+              <!--<div>-->
+                <!--<span>PHP&MySQL开发工程师</span>-->
+                <!--<div class="bottom clearfix">-->
+                  <!--<el-button type="text" class="button">进入</el-button>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</el-card>-->
+          <!--</el-col>-->
         </el-row>
       </div>
       <h1>精选视频</h1>
@@ -38,22 +170,12 @@
             <div>
               <span v-text="item.name">视频</span>
               <div class="bottom clearfix">
-                <el-button type="text" class="button" @click="goToVideo">进入</el-button>
+                <el-button type="text" class="button" @click="goToVideo(item.id)">进入</el-button>
               </div>
             </div>
           </el-card>
         </el-col>
       </el-row>
-      <div id="shareIndexFoot">
-        <div class="innerWrap">
-          <div class="text">
-            <h2>关于我们</h2>
-            <p>我们崇尚专注热爱的事业，更加尊重自由奔放的个性。</p>
-            <p>在这里，我们以一种体现自我价值的态度存在。</p>
-            <p>在这里，我们关注最好的体验设计更关注最好的你！我们共同创造，共同成长，用真实的能量产生影响。</p>
-          </div>
-        </div>
-      </div>
 		</section>
 	</div>
 </template>
@@ -62,34 +184,45 @@ export default {
   name: 'shareIndex',
   data () {
     return {
-      pageSize:12,
+      current_page: 1,
+      pageSize: 12,
       course_list: [],
       video_list: [],
+      object: {
+        createTime: '',
+        description: '',
+        handleType: '',
+        id: '',
+        indexpic: '',
+        name: '',
+        state: '',
+        tId: '',
+        type: ''
+      },
     }
   },
   created() {
-    let send_data = {
-      "currentPage": 1,
-      "pageSize": 12,
-    };
     this.jquery.ajax({
-      url: `http://localhost:8888/course/findLimitObjects`,
+      url: `http://localhost:8888/course/getRecommend`,
       beforeSend: function (request) {
         request.setRequestHeader("controller-token", document.cookie);
       },
       headers: {
         'Content-Type': 'application/json',
       },
-      type: 'post',
-      data: JSON.stringify(send_data),
+      type: 'get',
       success: (data) => {
-        console.log(data.data);
-        this.course_list = data.data.items;
+        this.course_list = data.data;
       },
       error: function (error) {
         console.log(err);
       },
     });
+    let send_data = {
+      pageNum: this.pageNum,
+      pageSize: this.pageSize,
+      object: this.object,
+    };
     this.jquery.ajax({
       url: `http://localhost:8888/video/findLimitObjects`,
       beforeSend: function (request) {
@@ -101,8 +234,7 @@ export default {
       type: 'post',
       data: JSON.stringify(send_data),
       success: (data) => {
-        console.log(data.data);
-        this.course_list = data.data.items;
+        this.video_list = data.data;
       },
       error: function (error) {
         console.log(err);
@@ -115,8 +247,11 @@ export default {
     })
   },
   methods: {
-    goToVideo() {
-      this.$router.push('/video-player');
+    goToCourse(id) {
+      this.$router.push(`/course-detail/${id}`);
+    },
+    goToVideo(id) {
+      this.$router.push(`/video-player/${id}`);
     },
   },
 }
@@ -125,6 +260,12 @@ export default {
 	#shareIndex {
 		margin-top: 60px;
 	}
+  .banner {
+    img {
+      width: 1205px;
+      height: 400px;
+    }
+  }
 	.wrap {
 		width: 100%;
 		margin: 0 auto;
@@ -149,8 +290,8 @@ export default {
     height: 20%;
     margin-top: 20px;
     .image {
-      width: 100%;
-      height: 100%;
+      width: 150px;
+      height: 112px;
     }
   }
   .bottom {

@@ -7,7 +7,6 @@ import axios from 'axios'
 import jquery from 'jquery'
 import ElementUI from 'element-ui'
 import Vuex from 'vuex';
-import moment from 'moment';
 import 'element-ui/lib/theme-default/index.css'
 import VideoPlayer from 'vue-video-player'
 require('video.js/dist/video-js.css');
@@ -20,8 +19,41 @@ Vue.use(Vuex);
 // axios.defaults.withCredentials=true;
 Vue.prototype.axios = axios;
 Vue.prototype.jquery = jquery;
-Vue.prototype.moment = moment;
-Vue.prototype.changeTime = time => moment(time).startOf('minute').fromNow().replace(/hours?/, '小时').replace('ago', '前').replace(/days?/, '天').replace(/minutes?/, '分钟').replace(/\ban?/, '1').replace(/months?/, '个月').replace(/\byears?/, '年').replace(/\s/g, '').replace('fewseconds','分钟');
+Vue.prototype.getCookie = function getCookie(cookieName) {
+  let strCookie = document.cookie;
+  let arrCookie = strCookie.split("; ");
+  for(let i = 0; i < arrCookie.length; i++){
+    let arr = arrCookie[i].split("=");
+    if(cookieName == arr[0]){
+      return arr[1];
+    }
+  }
+  return "";
+};
+
+Vue.prototype.clean = function (obj) {
+  for (let key in obj) {
+    let value = obj[key];
+    if (typeof value === 'undefined' || value === '' || value === null || (value instanceof Array && value.length === 0)) {
+      delete obj[key];
+    }
+  }
+};
+
+Vue.prototype.formatDate = function(datetime) {
+  let year = datetime.getFullYear(),
+    month = (datetime.getMonth() + 1 < 10) ? '0' + (datetime.getMonth() + 1):datetime.getMonth() + 1,
+    day = datetime.getDate() < 10 ? '0' + datetime.getDate() : datetime.getDate(),
+    hour = datetime.getHours() < 10 ? '0' + datetime.getHours() : datetime.getHours(),
+    min = datetime.getMinutes() < 10 ? '0' + datetime.getMinutes() : datetime.getMinutes(),
+    sec = datetime.getSeconds() < 10 ? '0' + datetime.getSeconds() : datetime.getSeconds();
+  return year + '-' + month + '-' + day + '_' + hour + '-' + min + '-' + sec;
+};
+
+Vue.prototype.getUrlId = function (param) {
+  param = window.location.href.split('/')[window.location.href.split('/').length - 1];
+  return Number(param);
+};
 
 const store = new Vuex.Store({
   state: {

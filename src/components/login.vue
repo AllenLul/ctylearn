@@ -61,29 +61,33 @@
             'Content-Type': 'application/json',
           }
         }).then(res => {
-          document.cookie = "Authorization=BearereyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYSIsImNyZWF0ZWQiOjE1MjU4NDY0MzU5MjUsImV4cCI6MTUyNjQ1MTIzNX0.H4SvUQ_3w_vQUQtzgUWIcF13s_6wYK19sPgqtQ-QFOQFt0XV2OW_Q4YbuVkmcG6AHBS2YShVXSS0lgk1XC_LJQ";
-          // this.$router.push(`/shareIndex`);
-          let send_data1 = {
-            number: this.account,
-          };
-          this.jquery.ajax({
-            url:`http://localhost:8888/user/getByNumber/${this.account}`,
-            beforeSend: function(request) {
-              request.setRequestHeader("controller-token", res.data.data);
-            },
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            type:'get',
-            success: (data) => {
-              localStorage.setItem('role', data.data.role);
-              localStorage.setItem('account', data.data.number);
-              this.$router.push(`/shareIndex`);
-            },
-            error: function (error) {
-              console.log(err);
-            },
-          });
+          if (res.data.code == 200) {
+            document.cookie = `Authorization=${res.data.data}`;
+            // this.$router.push(`/shareIndex`);
+            let send_data1 = {
+              number: this.account,
+            };
+            this.jquery.ajax({
+              url:`http://localhost:8888/user/getByNumber/${this.account}`,
+              beforeSend: function(request) {
+                request.setRequestHeader("controller-token", res.data.data);
+              },
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              type:'get',
+              success: (data) => {
+                localStorage.setItem('role', data.data.role);
+                localStorage.setItem('account', data.data.number);
+                localStorage.setItem('tid', data.data.id);
+                localStorage.setItem('t_name', data.data.name);
+                this.$router.push(`/shareIndex`);
+              },
+              error: function (error) {
+                console.log(err);
+              },
+            });
+          }
         });
       },
     },

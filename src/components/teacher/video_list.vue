@@ -1,8 +1,25 @@
 <template>
   <article class="wrap">
     <div>
-      <h1 style="display: inline-block">我的视频</h1>
-      <el-button size="mini" @click="openDialog">上传视频</el-button>
+      <h1 style="display: inline-block; margin-bottom: 20px;">我的视频</h1>
+      <el-form style="text-align: left" inline label-width="80px">
+        <el-form-item label="视频id:">
+          <el-input v-model="filter.id"></el-input>
+        </el-form-item>
+        <el-form-item label="视频名:">
+          <el-input v-model="filter.name"></el-input>
+        </el-form-item>
+        <el-form-item label="所属课程:">
+          <el-input v-model="filter.course"></el-input>
+        </el-form-item>
+        <el-form-item label="上传时间:">
+          <el-input v-model="filter.uploadtime"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button @click="queryData" type="primary">筛选</el-button>
+          <el-button @click="openDialog">上传视频</el-button>
+        </el-form-item>
+      </el-form>
     </div>
     <el-row>
       <el-col :span="8" v-for="(item, index) in video_list" :key="item.id">
@@ -17,31 +34,6 @@
         </el-card>
       </el-col>
     </el-row>
-    <el-dialog title="上传视频" :visible.sync="dialogVisible" :before-close="handleClose">
-      <el-form :model="form">
-        <el-form-item label="视频名称">
-          <el-input v-model="form.video_name" placeholder="请输入视频名称"></el-input>
-        </el-form-item>
-        <el-form-item label="视频详情">
-          <el-input type="textarea" v-model="form.video_detail" placeholder="请输入视频详情"></el-input>
-        </el-form-item>
-        <el-form-item label="所属课程">
-          <el-select v-model="form.course" placeholder="请选择">
-            <el-option v-for="item of form.course_list" :label="item.name" :value="item.id" :key="item.id"></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="上传附件">
-          <el-upload class="upload-demo" :file-list="video_list" drag action="https://jsonplaceholder.typicode.com/posts/" multiple>
-            <i class="el-icon-upload"></i>
-            <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-          </el-upload>
-        </el-form-item>
-      </el-form>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="handleClose">取 消</el-button>
-        <el-button type="primary" @click="confirm">确 定</el-button>
-      </span>
-    </el-dialog>
   </article>
 </template>
 
@@ -54,58 +46,55 @@
         pageNum: 1,
         pageSize: 12,
         video_list: [],
-        form: {
-          video_name: '',
-          video_detail: '',
-          course: '',
-          course_list: [],
+        videoSrc: '',
+        file_list: [],
+        object: {
+          createTime: '',
+          description: '',
+          handleType: '',
+          id: '',
+          indexpic: '',
+          name: '',
+          state: '',
+          tId: '',
+          type: ''
+        },
+        filter: {
+
         },
       }
     },
     created() {
-      this.getVideo(1);
+      this.queryData(1);
     },
     methods: {
-      getVideo(pageNum) {
+      queryData() {
+        let that = this;
+        let send_data = {
+          pageNum: this.pageNum,
+          pageSize: this.pageSize,
+          object: this.object,
+        };
+        this.clean(send_data.object);
         this.jquery.ajax({
-          url: `http://localhost:8888/video/findLimitObjects/${pageNum}/${this.pageSize}`,
+          url: `http://localhost:8888/video/findLimitObjects`,
           beforeSend: function (request) {
-            request.setRequestHeader("controller-token", document.cookie);
+            request.setRequestHeader("controller-token", that.getCookie('Authorization'));
           },
           headers: {
             'Content-Type': 'application/json',
           },
-          type: 'get',
+          type: 'post',
+          data: JSON.stringify(send_data),
           success: (data) => {
-            console.log(data.data);
-            this.video_list = data.data;
+            this.course_list = data.data;
           },
           error: function (error) {
-            console.log(err);
+            console.log(error);
           },
         });
       },
-      openDialog() {
-        this.dialogVisible = true;
-      },
-      handleClose() {
-        this.dialogVisible = false;
-      },
-      confirm() {
-        let send_data = {
 
-        };
-        this.axios({
-          method: 'post',
-          url: 'http://localhost:8888/file/uploaVideo',
-          data: send_data,
-          headers: {
-            'Content-Type': 'application/json',
-          }
-        }).then(res => {
-          this.dialogVisible = false;
-        });
-      },
     },
   }
 </script>
@@ -142,12 +131,12 @@
       padding: 2px 5px ;
     }
   }
-  .el-form-item {
+  .el-dialog, .el-form, .el-form-item {
     text-align: left;
   }
 
   .image {
-    width: 100%;
-    height: 100%;
+    width: 150px;
+    height: 112px;
   }
 </style>

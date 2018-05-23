@@ -2,7 +2,7 @@
   <div id="pagehead">
     <div class="headWrap">
       <p class="img">
-        <img src="../../assets/ued_logo.jpg" alt="logo">
+        U-Learning
       </p>
       <div class="menu">
         <el-menu default-active="1" unique-opened class="el-menu-demo" mode="horizontal" menu-trigger="click">
@@ -79,7 +79,9 @@
   }
   @media (min-width: 760px){
     p.img {
-      display: block;
+      margin-left: 0;
+      margin-top: 15px;
+      font-size: 26px;
     }
     .el-menu-item {
       padding: 0 20px

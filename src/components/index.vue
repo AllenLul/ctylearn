@@ -1,9 +1,9 @@
 <template>
   <div id="index">
     <section class="wrap">
-      <!--<pagehead-student v-if="is_student == role"></pagehead-student>-->
-      <pagehead-teacher v-if="'manager' == role"></pagehead-teacher>
-      <!--<pagehead-manager v-if="is_manager == role"></pagehead-manager>-->
+      <pagehead-student v-if="'student' == role"></pagehead-student>
+      <pagehead-teacher v-if="'teacher' == role"></pagehead-teacher>
+      <pagehead-manager v-if="'manager' == role"></pagehead-manager>
       <router-view></router-view>
       <pageFoot></pageFoot>
       <toPageTop></toPageTop>

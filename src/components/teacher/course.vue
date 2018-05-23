@@ -8,16 +8,16 @@
         </h1>
         <el-row>
           <el-col :span="8" v-for="(item, index) in course_list" :key="item.id">
-            <el-card :body-style="{ padding: '0px' }">
-              <img :src="item.indexpic" class="image">
-              <div>
-                <span v-text="item.name"></span>
-                <div class="bottom clearfix">
-                  <el-button type="text" class="button" @click="goToDetail">查看详情</el-button>
-                </div>
+          <el-card :body-style="{ padding: '0px' }">
+            <img :src="item.indexpic" class="image">
+            <div>
+              <span v-text="item.name"></span>
+              <div class="bottom clearfix">
+                <el-button type="text" class="button" @click="goToDetail(item.id)">查看详情</el-button>
               </div>
-            </el-card>
-          </el-col>
+            </div>
+          </el-card>
+        </el-col>
         </el-row>
       </div>
       <el-dialog title="申请课程" :visible.sync="dialogVisible" size="large" :before-close="handleClose">
@@ -38,8 +38,8 @@
               <el-option v-for="item of form.academic_list" :label="item.name" :value="item.id" :key="item.id"></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="上传图片">
-            <el-upload class="upload-demo" drag action="https://jsonplaceholder.typicode.com/posts/">
+          <el-form-item label="上传视频">
+            <el-upload class="upload-demo" :on-success="upLoad" :file-list="file_list" drag action="http://localhost:8888/course/uploadCoursePic" multiple>
               <i class="el-icon-upload"></i>
               <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
               <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
@@ -63,6 +63,19 @@
         pageNum: 1,
         pageSize: 12,
         course_list: [],
+        coursePic: '',
+        file_list: [],
+        object: {
+          createTime: '',
+          description: '',
+          handleType: '',
+          id: '',
+          indexpic: '',
+          name: '',
+          state: '',
+          tId: '',
+          type: ''
+        },
         form: {
           course_name: '',
           course_detail: '',
@@ -74,25 +87,33 @@
 			}
 		},
     created() {
-      this.getCourse(1);
+		  this.pageNum = 1;
+      this.getCourse();
     },
 		methods:{
-		  getCourse(pageNum) {
+		  getCourse() {
+		    let that = this;
+		    let send_data = {
+          pageNum: this.pageNum,
+          pageSize: this.pageSize,
+          object: this.object,
+        };
+		    this.clean(send_data.object);
         this.jquery.ajax({
-          url: `http://localhost:8888/course/findLimitObjects/${pageNum}/${this.pageSize}`,
+          url: `http://localhost:8888/course/findLimitObjects`,
           beforeSend: function (request) {
-            request.setRequestHeader("controller-token", document.cookie);
+            request.setRequestHeader("controller-token", that.getCookie('Authorization'));
           },
           headers: {
             'Content-Type': 'application/json',
           },
-          type: 'get',
+          type: 'post',
+          data: JSON.stringify(send_data),
           success: (data) => {
-            console.log(data.data);
             this.course_list = data.data;
           },
           error: function (error) {
-            console.log(err);
+            console.log(error);
           },
         });
       },
@@ -102,20 +123,25 @@
       handleClose() {
         this.dialogVisible = false;
       },
-      goToDetail() {
+      goToDetail(id) {
         // alert(window.location.href);
-        this.$router.push('/course-detail/123');
+        this.$router.push(`/course-detail/${id}`);
+      },
+      upLoad(response) { // upload success
+        this.coursePic = `../..${response.data.split('src')[1]}`;
       },
       apply() {
         let send_data = {
           name: this.form.course_name,
-          tId: localStorage.getItem('account'),
+          tId: localStorage.getItem('tid'),
           handleType: 0,
+          indexPic: this.coursePic,
         };
+        let that = this;
         this.jquery.ajax({
           url: `http://localhost:8888/course/add`,
           beforeSend: function (request) {
-            request.setRequestHeader("controller-token", document.cookie);
+            request.setRequestHeader("controller-token", that.getCookie('Authorization'));
           },
           headers: {
             'Content-Type': 'application/json',
@@ -157,8 +183,8 @@
     width: 16.66%;
     margin-top: 20px;
     .image {
-      width: 100%;
-      height: 100%;
+      width: 150px;
+      height: 112px;
     }
   }
   .bottom {
@@ -168,5 +194,8 @@
   .button {
     padding: 0;
     float: right;
+  }
+  .el-dialog, .el-form, .el-form-item {
+    text-align: left;
   }
 </style>

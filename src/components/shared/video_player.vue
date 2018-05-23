@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!--<video src="../../assets/videos/123.mp4" controls="controls"></video>-->
     <video-player  class="video-player vjs-custom-skin"
                    ref="videoPlayer"
                    :playsinline="true"
@@ -34,7 +33,7 @@
           fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
           sources: [{
             type: "",
-            src: 'http://vjs.zencdn.net/v/oceans.mp4', //你的m3u8地址（必填）
+            src: '', //你的m3u8地址（必填）
           }],
           // poster: "poster.jpg", //你的封面地址
           width: document.documentElement.clientWidth,
@@ -48,6 +47,32 @@
         }
       }
     },
+    created() {
+      let video_id = this.getUrlId();
+      let that = this;
+      this.jquery.ajax({
+        url: `http://localhost:8888/video/${video_id}`,
+        beforeSend: function (request) {
+          request.setRequestHeader("controller-token", that.getCookie('Authorization'));
+        },
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        type: 'get',
+        // data: JSON.stringify(send_data),
+        success: (data) => {
+          that.playerOptions.sources = [
+            {
+              type: '',
+              src: data.data.url,
+            }
+          ]
+        },
+        error: function (error) {
+          console.log(error);
+        },
+      });
+    },
     methods: {
       onPlayerPlay(player) {
         // alert("play");
@@ -58,7 +83,7 @@
     },
     computed: {
       player() {
-        return this.$refs.videoPlayer.player
+        return this.$refs.videoPlayer.player;
       }
     }
   }

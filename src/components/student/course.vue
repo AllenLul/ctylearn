@@ -3,14 +3,103 @@
     <section class="wrap">
       <div id="showShare">
         <h1>我的课程</h1>
+        <el-form style="text-align: left" inline label-width="80px">
+          <el-form-item label="课程id:">
+            <el-input v-model="filter.id"></el-input>
+          </el-form-item>
+          <el-form-item label="课程名:">
+            <el-input v-model="filter.name"></el-input>
+          </el-form-item>
+          <el-form-item label="所属学院:">
+            <el-input v-model="filter.course"></el-input>
+          </el-form-item>
+          <el-form-item label="上传时间:">
+            <el-input v-model="filter.uploadtime"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button @click="queryData" type="primary">筛选</el-button>
+          </el-form-item>
+        </el-form>
         <el-row>
-          <el-col :span="8" v-for="(item, index) in course_list" :key="item.id">
+          <!--<el-col :span="8" v-for="(item, index) in course_list" :key="item.id">-->
+            <!--<el-card :body-style="{ padding: '0px' }">-->
+              <!--<img :src="item.indexpic" class="image">-->
+              <!--<div>-->
+                <!--<span v-text="item.name"></span>-->
+                <!--<div class="bottom clearfix">-->
+                  <!--<el-button type="text" class="button" @click="goToDetail">查看详情</el-button>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</el-card>-->
+          <!--</el-col>-->
+          <el-col :span="8">
+            <!--<el-col :span="8" v-for="(item, index) in course_list" :key="item.id">-->
             <el-card :body-style="{ padding: '0px' }">
-              <img :src="item.indexpic" class="image">
+              <img src="../../assets/images/lessons/8.jpg" class="image">
               <div>
-                <span v-text="item.name"></span>
+                <span>计算机网络安全</span>
                 <div class="bottom clearfix">
-                  <el-button type="text" class="button" @click="goToDetail">查看详情</el-button>
+                  <el-button type="text" class="button">进入</el-button>
+                </div>
+              </div>
+            </el-card>
+          </el-col>
+          <el-col :span="8">
+            <!--<el-col :span="8" v-for="(item, index) in course_list" :key="item.id">-->
+            <el-card :body-style="{ padding: '0px' }">
+              <img src="../../assets/images/lessons/9.jpg" class="image">
+              <div>
+                <span>摄影全能班</span>
+                <div class="bottom clearfix">
+                  <el-button type="text" class="button">进入</el-button>
+                </div>
+              </div>
+            </el-card>
+          </el-col>
+          <el-col :span="8">
+            <!--<el-col :span="8" v-for="(item, index) in course_list" :key="item.id">-->
+            <el-card :body-style="{ padding: '0px' }">
+              <img src="../../assets/images/lessons/10.jpg" class="image">
+              <div>
+                <span>IOS培训课程</span>
+                <div class="bottom clearfix">
+                  <el-button type="text" class="button">进入</el-button>
+                </div>
+              </div>
+            </el-card>
+          </el-col>
+          <el-col :span="8">
+            <!--<el-col :span="8" v-for="(item, index) in course_list" :key="item.id">-->
+            <el-card :body-style="{ padding: '0px' }">
+              <img src="../../assets/images/lessons/3.jpg" class="image">
+              <div>
+                <span>IT工程师职业规划浅谈</span>
+                <div class="bottom clearfix">
+                  <el-button type="text" class="button">进入</el-button>
+                </div>
+              </div>
+            </el-card>
+          </el-col>
+          <el-col :span="8">
+            <!--<el-col :span="8" v-for="(item, index) in course_list" :key="item.id">-->
+            <el-card :body-style="{ padding: '0px' }">
+              <img src="../../assets/images/lessons/11.jpg" class="image">
+              <div>
+                <span>Akka介绍与架构解析</span>
+                <div class="bottom clearfix">
+                  <el-button type="text" class="button">进入</el-button>
+                </div>
+              </div>
+            </el-card>
+          </el-col>
+          <el-col :span="8">
+            <!--<el-col :span="8" v-for="(item, index) in course_list" :key="item.id">-->
+            <el-card :body-style="{ padding: '0px' }">
+              <img src="../../assets/images/lessons/12.png" class="image">
+              <div>
+                <span>PHP&MySQL开发工程师</span>
+                <div class="bottom clearfix">
+                  <el-button type="text" class="button">进入</el-button>
                 </div>
               </div>
             </el-card>
@@ -38,6 +127,13 @@
         pageNum: 1,
         pageSize: 12,
         course_list: [],
+        filter: {
+          course_name: '',
+          id: '',
+          name: '',
+          teacher: '',
+          uploadtime: '',
+        },
 			}
 		},
     created() {
@@ -82,7 +178,8 @@
     padding-bottom:30px;
   }
   h1 {
-    margin-top: 60px;
+    margin-top: 100px;
+    margin-bottom: 30px;
   }
   .el-card {
     margin-left: 10px;
@@ -94,8 +191,8 @@
     width: 16.66%;
     margin-top: 20px;
     .image {
-      width: 100%;
-      height: 100%;
+      width: 150px;
+      height: 112px;
     }
   }
   .bottom {
